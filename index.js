@@ -1,15 +1,14 @@
 const express = require("express")
 
 const app = express()
+const PORT = process.env.PORT || 3977
 
 app.set("view engine", "ejs")
 
-app.get("/garatachia", (req, res) => {
-// res.send("Adio chula garatachia")
-
-res.render("index")
+app.get("/", (req, res) => {
+    res.render("index")
 })
 
-app.listen(3000, (req, res) => {
-console.log("Corriendo en el puerto 3000")
+app.listen(PORT, () => {
+    console.log(`tu server esta listo en el puerto ${PORT}`)
 })
