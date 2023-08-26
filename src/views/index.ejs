@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+  <%- include('partials/head') %>
+</head>
+
+<body>
+  <%- include('partials/navigation') %>
+  <div class="container mt-5 table-responsive">
+    <div class="container text-center ">
+      <h3 class="text-secondary">Gastos Diarios</h3>
+      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalFormDaily">
+        Registrar
+      </button>
+    </div>
+    <table class="table table-striped shadow p-3 mb-5 bg-body-tertiary rounded" style="width:100%" id="tableDaily">
+      <thead>
+        <th>FECHA</th>
+        <th>CONCEPTO</th>
+        <th>CANTIDAD</th>
+        <th>PERSONA</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>25-08-23</td>
+          <td>Tacos chino</td>
+          <td>80</td>
+          <td>Kike</td>
+        </tr>
+        <tr>
+          <td>25-08-23</td>
+          <td>Tacos chino</td>
+          <td>80</td>
+          <td>Brandon</td>
+        </tr>
+        <tr>
+          <td>25-08-23</td>
+          <td>Coca zero</td>
+          <td>12</td>
+          <td>Marce</td>
+        </tr>
+        <tr>
+          <td>25-08-23</td>
+          <td>Pizza</td>
+          <td>77</td>
+          <td>Kike</td>
+        </tr>
+        <tr>
+          <td>25-08-23</td>
+          <td>Pizza</td>
+          <td>77</td>
+          <td>Marce</td>
+        </tr>
+        <tr>
+          <td>25-08-23</td>
+          <td>Coca zero</td>
+          <td>12</td>
+          <td>Kike</td>
+        </tr>
+        <tr>
+          <td>25-08-23</td>
+          <td>crossantin</td>
+          <td>6</td>
+          <td>Kike</td>
+        </tr>
+        <tr>
+          <td>25-08-23</td>
+          <td>crossantin</td>
+          <td>6</td>
+          <td>Kike</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalFormDaily" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formDaily">
+            <div class="row">
+              <div class="col mb-3">
+                <label for="inputDate" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="inputDate">
+              </div>
+              <div class="col mb-3">
+                <label for="inputConcept" class="form-label">Concepto</label>
+                <input type="text" class="form-control" id="inputConcept">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label for="inputAmount" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="inputAmount">
+              </div>
+              <div class="col mb-3">
+                <label for="inputPerson" class="form-label">Persona</label>
+                <select id="inputPerson" class="form-select" aria-label="Default select example">
+                  <option selected disabled></option>
+                  <option value="Kike">Kike</option>
+                  <option value="Marce">Marce</option>
+                  <option value="Brandon">Brandon</option>
+                  <option value="Brenda">Brenda</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <!-- <input type="text" class="form-control" id="inputPerson"> -->
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-outline-success">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+
+</html>
