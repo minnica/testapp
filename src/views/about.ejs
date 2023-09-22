@@ -4,16 +4,135 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
+  <title>Estados de cuenta</title>
   <%- include('partials/head')  %>
 </head>
 <body>
   <%- include('partials/navigation') %>
-  <main class="vh-100 container pt-2 text-center d-flex justify-content-center align-items-center">
-    <section>
-      <h1 class="display-1">About</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste obcaecati ut inventore sed optio voluptate asperiores corrupti, a dignissimos necessitatibus et aperiam nisi fuga laborum iusto quisquam quidem neque dolorum nemo. Delectus similique repudiandae eligendi quibusdam dolore aperiam! Error reprehenderit vitae doloremque rem dolores, asperiores nostrum nobis voluptatem autem veniam consequatur earum commodi ad iste voluptatum, tenetur nihil eum odit ratione delectus necessitatibus. Et, in quae! Laudantium soluta aut ab nesciunt, sequi, ex adipisci saepe dolorum totam harum et magni ad optio? Dolores magnam deleniti, ratione ut illum voluptatibus voluptatem sed eum voluptas ullam dolorem, commodi vero natus dolorum ipsam omnis eligendi soluta quos molestiae enim libero, veniam praesentium amet harum. Ad laboriosam voluptatum blanditiis reprehenderit aperiam quo? Aspernatur omnis saepe quis expedita, quo inventore! Amet, nesciunt modi ea hic voluptate quam repellendus quis dolores recusandae reprehenderit aliquam. Necessitatibus quisquam sed pariatur optio sequi officia quaerat expedita laudantium quo eius similique enim voluptas suscipit obcaecati consectetur deleniti eum, magni nam possimus totam quos. Tempora sit at fugiat ex a similique repellendus asperiores! Accusantium libero quaerat, reiciendis mollitia cumque minus enim nemo qui similique consectetur ullam natus! Rerum vel eius nihil doloribus earum neque unde hic blanditiis dicta possimus inventore nesciunt necessitatibus quae culpa, at labore? Excepturi temporibus blanditiis quidem, cumque doloribus nam in rem iusto, corporis earum optio odit ut esse! Voluptate obcaecati consequatur laboriosam exercitationem ut impedit delectus molestiae iste non, sapiente odit, dolorum soluta? Inventore molestias, commodi id, quae harum omnis praesentium molestiae dicta eaque incidunt minima numquam libero quasi magnam? Voluptatum fugit aliquid quis, maiores repellat deserunt accusantium saepe ab animi necessitatibus dolorem minus delectus sequi quam officia eaque asperiores, culpa consectetur neque soluta. Officia veritatis ab temporibus dicta unde itaque necessitatibus voluptatum fugiat sunt corrupti libero doloribus, consequatur id sit, tempore, expedita facere. In, deleniti maxime?</p>
-    </section>
-  </main>
+  <div class="container mt-5 table-responsive">
+    <div class="container text-center ">
+      <h3 class="text-secondary"></h3>
+      <!-- data-bs-toggle="modal" data-bs-target="#modalFormAccounts" -->
+      <button id="insertFormAmount" type="button" class="btn btn-dark"> 
+        Registrar
+      </button>
+    </div>
+    <table class="table table-striped shadow p-3 mb-5 bg-body-tertiary rounded" style="width:100%" id="tableAccount">
+      <thead>
+        <th>ID</th>
+        <th>FECHA</th>
+        <th>BANCO</th>
+        <th>MOVIMIENTO</th>
+        <th>PERSONA</th>
+        <th>MONTO</th>
+        <th>MSI</th>
+        <th>PARCIALIDAD</th>
+        <th>MES RESTANTE</th>
+        <th>PAGO CORTE</th>
+        <th>RESTANTE</th>  
+        <th>STATUS</th>  
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span id="totalPay"></span></td>
+          <td id="totalMissPay"></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+    <!-- Modal Insert -->
+    <div class="modal fade" id="modalFormAccounts" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">REGISTRO</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <!-- action="/add-account" method="post" -->
+          <form id="formAmount" >
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="date" class="form-label">FECHA</label>
+                  <input id="date" type="date" class="form-control" name="date">
+                </div>
+                <div class="col mb-3">
+                  <label for="bank" class="form-label">BANCO</label>
+                  <select id="bank" class="form-select" aria-label="Default select example" name="bank">
+                    <option selected disabled></option>
+                    <option value="NU">NU</option>
+                    <option value="CITIBANAMEX">CITIBANAMEX</option>
+                    <option value="HSBC">HSBC</option>
+                    <option value="BBVA">BBVA</option>
+                    <option value="SANTANDER">SANTANDER</option>
+                    <option value="HEY BANCO">HEY BANCO</option>
+                    <option value="MERCADOPAGO">MERCADOPAGO</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="concept" class="form-label">MOVIMIENTO</label>
+                  <input id="concept" type="text" class="form-control" name="concept">
+                </div>
+                <div class="col mb-3">
+                  <label for="person" class="form-label">PERSONA</label>
+                  <input id="person" type="text" class="form-control" name="person">
+                </div> 
+              </div>
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="amount" class="form-label">MONTO</label>
+                  <input id="amount" type="number" class="form-control" step="any" name="amount">
+                </div>
+                <div class="col mb-3">
+                  <label for="msi" class="form-label">MSI</label>
+                  <input id="msi" type="number" class="form-control" step="any" name="msi">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="partiality" class="form-label">PARCIALIDAD</label>
+                  <input id="partiality" type="text" class="form-control" name="partiality">
+                </div>
+                <div class="col mb-3">
+                  <label for="miss_mounth" class="form-label">MES RESTANTE</label>
+                  <input id="miss_mounth" type="number" class="form-control" step="any" name="miss_mounth" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="pay" class="form-label">PAGO</label>
+                  <input id="pay" type="text" class="form-control" name="pay" disabled>
+                </div>
+                <div class="col col-6 mb-3">
+                  <label for="miss_pay" class="form-label">PAGO RESTANTE</label>
+                  <input id="miss_pay" type="number" class="form-control" step="any" name="miss_pay" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  <%- include('partials/footer') %>
 </body>
 </html>

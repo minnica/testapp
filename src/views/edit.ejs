@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Registro</title>
+  <%- include('partials/head') %>
+</head>
+
+<body>
+  <%- include('partials/navigation') %>
+    <div class="container mt-3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1> -->
+          <%= data[0].id_daily  %>
+        </div>
+        <form id="formDailyUpdate" action="/update/<%= data[0].id_daily  %>" method="post">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col mb-3">
+                <label for="concept" class="form-label">Concepto</label>
+                <input id="concept" type="text" class="form-control" name="concept" value="<%= data[0].concept  %>">
+              </div>
+              <div class="col mb-3">
+                <label for="amount" class="form-label">Cantidad</label>
+                <input id="amount" type="number" class="form-control" name="amount" value="<%= data[0].amount  %>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label for="person" class="form-label">Persona</label>
+                <select id="person" class="form-select" aria-label="Default select example" name="person" value="<%= data[0].person  %>">
+                  <option selected value="<%= data[0].person %>"> <%= data[0].person  %> </option>
+                  <option value="Kike">Kike</option>
+                  <option value="Marce">Marce</option>
+                  <option value="Brandon">Brandon</option>
+                  <option value="Brenda">Brenda</option>
+                  <option value="Otro">Otro</option> 
+                </select>
+              </div>
+              <div class="col mb-3">
+                <label for="date" class="form-label">Fecha</label>
+                <input id="date" type="date" class="form-control" name="date" value="<%= data[0].date  %>">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="/" type="button" class="btn btn-danger">Cerrar</a>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+
+</html>

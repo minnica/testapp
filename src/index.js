@@ -12,8 +12,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 app.set('views', join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+app.use(express.urlencoded({extended: false}))
 app.use(indexRoutes)
-
 app.use(express.static(join(__dirname, 'public')))
 
 app.listen(PORT, () => {
@@ -22,7 +22,7 @@ app.listen(PORT, () => {
 
 // MySQL connection
 // Query test
-app.get('/ping', async (req, res) => {
+/* app.get('/ping', async (req, res) => {
   const [result] = await conn.query(`SELECT 'hello world' AS RESULT`)
   res.json(result[0])
   res.send('welcome')
@@ -38,4 +38,4 @@ app.get('/create', async (req, res) => {
 app.get('/select', async (req, res) => {
   const [rows] = await conn.query('SELECT * FROM daily_movements')
   res.json(rows)
-})
+}) */

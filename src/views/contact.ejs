@@ -1,38 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <%- include('partials/head')  %>
+  <title>Corte y limite</title>
+  <%- include('partials/head') %>
 </head>
+
 <body>
   <%- include('partials/navigation') %>
-  <div class="container vh-100 d-flex justify-content-center align-items-center">
-    <div class="card bg-dark text-white text-center">
-      <div class="card-header">
-          <h3>Contact me</h3>
+    <div class="container mt-5 table-responsive">
+      <div class="container text-center ">
+        <h3 class="text-secondary"></h3>
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalFormDatesInsert">
+          Registrar
+        </button>
       </div>
-      <div class="card-body text-start">
-        <form>
-          <div class="mb-3">
-              <label for="email">Email</label>
-              <input type="email" placeholder="Email" class="form-control">
-          </div>
+      <table class="table table-striped shadow p-3 mb-5 bg-body-tertiary rounded" style="width:100%"
+        id="tableDatesLimits">
+        <thead>
+          <th>ID</th>
+          <th>BANCO</th>
+          <th>CANTIDAD</th>
+          <th>FECHA CORTE</th>
+          <th>FECHA LIMITE</th>
+          <th>DÍAS CORTE</th>
+          <th>DÍAS LIMITE</th>
+          <th>REGISTRO</th>
+          <th>PAGADO</th>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <!-- <td id="totalAmount" class="text-success"></td> -->
+            <td id="totalAmount"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
 
-          <div class="mb-3">
-            <label for="message">Message</label>
-            <textarea name="message" rows="3" class="form-control" placeholder="Write a message"></textarea>
+    <!-- Modal Insert -->
+    <div class="modal fade" id="modalFormDatesInsert" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-
-          <button class="btn btn-primary btn-block">
-              Save 
-          </button>
-        </form>
+          <form id="formDaily" action="/add-dates" method="post">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="bank" class="form-label">BANCO</label>
+                  <select id="bank" class="form-select" name="bank">
+                    <option selected disabled></option>
+                    <option value="NU">NU</option>
+                    <option value="CITIBANAMEX">CITIBANAMEX</option>
+                    <option value="HSBC">HSBC</option>
+                    <option value="BBVA">BBVA</option>
+                    <option value="SANTANDER">SANTANDER</option>
+                    <option value="HEY BANCO">HEY BANCO</option>
+                    <option value="MERCADOPAGO">MERCADOPAGO</option>
+                  </select>
+                </div>
+                <div class="col mb-3">
+                  <label for="amount" class="form-label">CANTIDAD</label>
+                  <input id="amount" type="number" class="form-control" step="any" name="amount">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="date_cutoff" class="form-label">FECHA CORTE</label>
+                  <input id="date_cutoff" type="date" class="form-control" name="date_cutoff">
+                </div>
+                <div class="col mb-3">
+                  <label for="date_limit" class="form-label">FECHA LIMITE</label>
+                  <input id="date_limit" type="date" class="form-control" name="date_limit">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <label for="record" class="form-label">REGISTRO</label>
+                  <input id="record" type="text" class="form-control" name="record">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-outline-success">Guardar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <%- include('partials/footer')  %>
+    <%- include('partials/footer') %>
 </body>
+
 </html>

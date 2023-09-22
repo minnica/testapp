@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -13,121 +13,132 @@
 
 <body>
   <%- include('partials/navigation') %>
-  <div class="container mt-5 table-responsive">
-    <div class="container text-center ">
-      <h3 class="text-secondary">Gastos Diarios</h3>
-      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalFormDaily">
-        Registrar
-      </button>
+    <div class="container mt-5 table-responsive">
+      <div class="container text-center ">
+        <h3 class="text-secondary"></h3>
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalFormDailyInsert">
+          Registrar
+        </button>
+      </div>
+      <table class="table table-striped shadow p-3 mb-5 bg-body-tertiary rounded" style="width:100%" id="tableDaily">
+        <thead>
+          <th>ID</th>
+          <th>CONCEPTO</th>
+          <th>CANTIDAD</th>
+          <th>PERSONA</th>
+          <th>FECHA</th>
+          <th>ACCIONES</th>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td><span id="total_order"></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
-    <table class="table table-striped shadow p-3 mb-5 bg-body-tertiary rounded" style="width:100%" id="tableDaily">
-      <thead>
-        <th>FECHA</th>
-        <th>CONCEPTO</th>
-        <th>CANTIDAD</th>
-        <th>PERSONA</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>25-08-23</td>
-          <td>Tacos chino</td>
-          <td>80</td>
-          <td>Kike</td>
-        </tr>
-        <tr>
-          <td>25-08-23</td>
-          <td>Tacos chino</td>
-          <td>80</td>
-          <td>Brandon</td>
-        </tr>
-        <tr>
-          <td>25-08-23</td>
-          <td>Coca zero</td>
-          <td>12</td>
-          <td>Marce</td>
-        </tr>
-        <tr>
-          <td>25-08-23</td>
-          <td>Pizza</td>
-          <td>77</td>
-          <td>Kike</td>
-        </tr>
-        <tr>
-          <td>25-08-23</td>
-          <td>Pizza</td>
-          <td>77</td>
-          <td>Marce</td>
-        </tr>
-        <tr>
-          <td>25-08-23</td>
-          <td>Coca zero</td>
-          <td>12</td>
-          <td>Kike</td>
-        </tr>
-        <tr>
-          <td>25-08-23</td>
-          <td>crossantin</td>
-          <td>6</td>
-          <td>Kike</td>
-        </tr>
-        <tr>
-          <td>25-08-23</td>
-          <td>crossantin</td>
-          <td>6</td>
-          <td>Kike</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="modalFormDaily" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="formDaily">
-            <div class="row">
-              <div class="col mb-3">
-                <label for="inputDate" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="inputDate">
+
+    <!-- Modal Insert -->
+    <div class="modal fade" id="modalFormDailyInsert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="formDaily" action="/add" method="post">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="concept" class="form-label">Concepto</label>
+                  <input id="concept" type="text" class="form-control" name="concept">
+                </div>
+                <div class="col mb-3">
+                  <label for="amount" class="form-label">Cantidad</label>
+                  <input id="amount" type="number" class="form-control" name="amount">
+                </div>
               </div>
-              <div class="col mb-3">
-                <label for="inputConcept" class="form-label">Concepto</label>
-                <input type="text" class="form-control" id="inputConcept">
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="person" class="form-label">Persona</label>
+                  <select id="person" class="form-select" aria-label="Default select example" name="person">
+                    <option selected disabled></option>
+                    <option value="Kike">Kike</option>
+                    <option value="Marce">Marce</option>
+                    <option value="Brandon">Brandon</option>
+                    <option value="Brenda">Brenda</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+                <div class="col mb-3">
+                  <label for="date" class="form-label">Fecha</label>
+                  <input id="date" type="date" class="form-control" name="date">
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col mb-3">
-                <label for="inputAmount" class="form-label">Cantidad</label>
-                <input type="number" class="form-control" id="inputAmount">
-              </div>
-              <div class="col mb-3">
-                <label for="inputPerson" class="form-label">Persona</label>
-                <select id="inputPerson" class="form-select" aria-label="Default select example">
-                  <option selected disabled></option>
-                  <option value="Kike">Kike</option>
-                  <option value="Marce">Marce</option>
-                  <option value="Brandon">Brandon</option>
-                  <option value="Brenda">Brenda</option>
-                  <option value="Otro">Otro</option>
-                </select>
-                <!-- <input type="text" class="form-control" id="inputPerson"> -->
-              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-outline-success">Guardar</button>
             </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-outline-success">Guardar</button>
+      </div>
+    </div>
+
+    <!-- Modal Update -->
+    <div class="modal fade" id="modalFormDailyUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Actualizar</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="formDailyUpdate" action="/update/" method="post">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="conceptUpdate" class="form-label">Concepto</label>
+                  <input id="conceptUpdate" type="text" class="form-control" name="concept" value="">
+                </div>
+                <div class="col mb-3">
+                  <label for="amountUpdate" class="form-label">Cantidad</label>
+                  <input id="amountUpdate" type="number" class="form-control" name="amount">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-3">
+                  <label for="personUpdate" class="form-label">Persona</label>
+                  <select id="personUpdate" class="form-select" aria-label="Default select example" name="person">
+                    <option selected disabled></option>
+                    <option value="Kike">Kike</option>
+                    <option value="Marce">Marce</option>
+                    <option value="Brandon">Brandon</option>
+                    <option value="Brenda">Brenda</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+                <div class="col mb-3">
+                  <label for="dateUpdate" class="form-label">Fecha</label>
+                  <input id="dateUpdate" type="date" class="form-control" name="date">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-outline-success">Guardar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </div>
-  <%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 </body>
 
 </html>
