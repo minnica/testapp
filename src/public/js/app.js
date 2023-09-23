@@ -311,73 +311,70 @@ $(document).ready(function () {
     type: "GET",
     datatype: "json",
     success: function (data) {
-      console.log("data", data);
-      // const bank = data.map(function (e) {
-      //   return e.bank;
-      // });
-
-      // const amount = data.map(function (e) {
-      //   return e.amount
-      // });
-
-      const ctx = document.getElementById('myChart');
-
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['BANCOS'],
-          datasets: [
-            {
-              label: [data[0].bank],
-              data: [data[0].amount],
-              borderWidth: 1,
-              borderColor: '#672fa8',
-              backgroundColor: '#672fa8',
-            },
-            {
-              label: [data[1].bank],
-              data: [data[1].amount],
-              borderWidth: 1,
-              borderColor: '#1c63a5',
-              backgroundColor: '#1c63a5',
-            },
-            {
-              label: [data[2].bank],
-              data: [data[2].amount],
-              borderWidth: 1,
-              borderColor: '#cf2c22',
-              backgroundColor: '#cf2c22',
-            },
-            {
-              label: [data[3].bank],
-              data: [data[3].amount],
-              borderWidth: 1,
-              borderColor: '#0d1f3b',
-              backgroundColor: '#0d1f3b',
-            },
-            {
-              label: [data[4].bank],
-              data: [data[4].amount],
-              borderWidth: 1,
-              borderColor: '#d92b1b',
-              backgroundColor: '#d92b1b',
-            },
-          ]
+      var options = {
+        series: [{
+          name: [data[0].bank],
+          data: [data[0].amount]
+        }, {
+          name: [data[1].bank],
+          data: [data[1].amount]
+        }, {
+          name: [data[2].bank],
+          data: [data[2].amount]
+        }, {
+          name: [data[3].bank],
+          data: [data[3].amount]
+        }, {
+          name: [data[4].bank],
+          data: [data[4].amount]
+        }],
+        chart: {
+          type: 'bar',
+          height: 500
         },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+          categories: ['BANCOS'],
+        },
+        yaxis: {
+          title: {
+            text: 'CANTIDAD $'
+          }
+        },
+        colors: [
+          "#672fa8",
+          "#1c63a5",
+          "#cf2c22",
+          "#0d1f3b",
+          "#d92b1b"
+        ],
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "$ " + val + " thousands"
             }
           }
         }
-      });
-
+      };
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
     }
   });
-
-
-
-
-
 })
