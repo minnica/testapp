@@ -101,6 +101,7 @@ router.post('/update/:id_daily', async (req, res) => {
 
 router.get('/about', (req, res) => res.render('about', { title: 'Cuentas from server 2', page: 2}))
 router.get('/contact', (req, res) => res.render('contact', { title: 'Cuentas from server 2', page: 3 }))
+router.get('/graphic', (req, res) => res.render('graphic', { title: 'Cuentas from server 2', page: 4 }))
 // router.get('/edit', (req, res) => res.render('edit'))
 
 

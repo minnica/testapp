@@ -304,4 +304,80 @@ $(document).ready(function () {
     $('#miss_pay').val(missPayValue);
   });
 
+
+
+  $.ajax({
+    url: urlDates,
+    type: "GET",
+    datatype: "json",
+    success: function (data) {
+      console.log("data", data);
+      // const bank = data.map(function (e) {
+      //   return e.bank;
+      // });
+
+      // const amount = data.map(function (e) {
+      //   return e.amount
+      // });
+
+      const ctx = document.getElementById('myChart');
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['BANCOS'],
+          datasets: [
+            {
+              label: [data[0].bank],
+              data: [data[0].amount],
+              borderWidth: 1,
+              borderColor: '#672fa8',
+              backgroundColor: '#672fa8',
+            },
+            {
+              label: [data[1].bank],
+              data: [data[1].amount],
+              borderWidth: 1,
+              borderColor: '#1c63a5',
+              backgroundColor: '#1c63a5',
+            },
+            {
+              label: [data[2].bank],
+              data: [data[2].amount],
+              borderWidth: 1,
+              borderColor: '#cf2c22',
+              backgroundColor: '#cf2c22',
+            },
+            {
+              label: [data[3].bank],
+              data: [data[3].amount],
+              borderWidth: 1,
+              borderColor: '#0d1f3b',
+              backgroundColor: '#0d1f3b',
+            },
+            {
+              label: [data[4].bank],
+              data: [data[4].amount],
+              borderWidth: 1,
+              borderColor: '#d92b1b',
+              backgroundColor: '#d92b1b',
+            },
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+    }
+  });
+
+
+
+
+
 })
