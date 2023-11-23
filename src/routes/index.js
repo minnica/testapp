@@ -6,7 +6,7 @@ const router = Router()
 //case page index
 router.get('/', async (req, res) => {
   const [result] = await conn.query('SELECT id_daily, concept, amount, person, DATE_FORMAT(date, "%Y-%m-%d") as date FROM daily_movements')
-  console.log("sum", sum);
+  // console.log("sum", sum);
   res.render('index', {
     title: 'Cuentas from server 1',
     data: result,
@@ -98,8 +98,23 @@ router.post('/add-dates', async (req, res) => {
 //cases page daily-taxes
 router.get('/daily-taxes', (req, res) => res.render('dailyTaxes', { title: 'Cuentas from server 2', page: 4 }))
 
+//pending
+router.get('/taxes-daily-data', async (req, res) => {
+  const [result] = await conn.query('SELECT id_daily_taxes, DATE_FORMAT(date, "%Y-%m-%d") as date, amount, percentage, amount_year, amount_month, amount_week, amount_daily FROM daily_taxes')
+  res.send(result)
+})
+
 //cases page graphic
-router.get('/graphic', (req, res) => res.render('graphic', { title: 'Cuentas from server 2', page: 5 }))
+router.get('/cards', (req, res) => res.render('cards', { title: 'Cuentas from server 2', page: 5 }))
+
+//pending
+router.get('/cards-select', async (req, res) => {
+  const [result] = await conn.query('SELECT * FROM cards')
+  res.send(result)
+})
+
+//cases page graphic
+router.get('/graphic', (req, res) => res.render('graphic', { title: 'Cuentas from server 2', page: 6 }))
 
 
 

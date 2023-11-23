@@ -2,6 +2,9 @@ $(document).ready(function () {
   const url = 'http://localhost:3000/select'
   const urlAccount = 'http://localhost:3000/account'
   const urlDates = 'http://localhost:3000/dates'
+  const urlTaxes = 'http://localhost:3000/taxes-daily-data'
+  const urlCards = 'http://localhost:3000/cards-select'
+
   var tableDaily = $('#tableDaily').DataTable({
     ajax: {
       url: url,
@@ -240,6 +243,23 @@ $(document).ready(function () {
     }
   })
 
+  var tableDailyTaxes = $('#tableDailyTaxes').DataTable({
+    ajax: {
+      url: urlTaxes,
+      dataSrc: ""
+    },
+    columns: [
+      { data: "id_daily_taxes" },
+      { data: "date" },
+      { data: "amount", render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+      { data: "percentage", render: $.fn.dataTable.render.number(',', '.', 1, '', '%') },
+      { data: "amount_year", render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+      { data: "amount_month", render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+      { data: "amount_week", render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+      { data: "amount_daily", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+    ]
+  })
+
   $("#insertFormAmount").click(function () {
     $("#formAmount").trigger("reset");
     $('#modalFormAccounts').modal('show');
@@ -302,6 +322,30 @@ $(document).ready(function () {
     // set new values
     $('#miss_mounth').val(missMounthValue);
     $('#miss_pay').val(missPayValue);
+  });
+
+  $.ajax({
+    url: urlCards,
+    type: "GET",
+    datatype: "json",
+    success: function (data) {
+      console.log("data", data);
+      $('#limitNu').html(`$${data[0].limit.toLocaleString('es-MX')}`)
+      $('#occupiedBalanceNu').html(`$${data[0].occupied_balance.toLocaleString('es-MX')}`)
+      $('#freeBalanceNu').html(`$${data[0].free_balance.toLocaleString('es-MX')}`)
+
+      $('#limitCiti').html(`$${data[1].limit.toLocaleString('es-MX')}`)
+      $('#occupiedBalanceCiti').html(`$${data[1].occupied_balance.toLocaleString('es-MX')}`)
+      $('#freeBalanceCiti').html(`$${data[1].free_balance.toLocaleString('es-MX')}`)
+
+      $('#limitHsbc').html(`$${data[2].limit.toLocaleString('es-MX')}`)
+      $('#occupiedBalanceHsbc').html(`$${data[2].occupied_balance.toLocaleString('es-MX')}`)
+      $('#freeBalanceHsbc').html(`$${data[2].free_balance.toLocaleString('es-MX')}`)
+
+      $('#limitBbva').html(`$${data[3].limit.toLocaleString('es-MX')}`)
+      $('#occupiedBalanceBbva').html(`$${data[3].occupied_balance.toLocaleString('es-MX')}`)
+      $('#freeBalanceBbva').html(`$${data[3].free_balance.toLocaleString('es-MX')}`)
+    }
   });
 
 

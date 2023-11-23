@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjetas</title>
+  <%- include('partials/head') %>
+</head>
+
+<body>
+  <%- include('partials/navigation') %>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card text-white mb-3" style="background-color: #820ad1;"> <!-- max-width: 18rem; -->
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <h5 class="card-title">NU</h5>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <i class="fa-brands fa-cc-mastercard fa-2x"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-7">
+                  <p class="card-text">Limite Disponible</p>
+                  <p class="card-text">Salgo dispuesto</p>
+                  <p class="card-text">Saldo disponible</p>
+                </div>
+                <div class="col-5">
+                  <p class="card-text" id="limitNu"></p>
+                  <p class="card-text" id="occupiedBalanceNu"></p>
+                  <p class="card-text" id="freeBalanceNu"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card text-white mb-3" style="background-color: #104B84;">
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <h5 class="card-title">CITIBANAMEX</h5>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <i class="fa-brands fa-cc-mastercard fa-2x"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-7">
+                  <p class="card-text">Limite Disponible</p>
+                  <p class="card-text">Salgo dispuesto</p>
+                  <p class="card-text">Saldo disponible</p>
+                </div>
+                <div class="col-5">
+                  <p class="card-text" id="limitCiti"></p>
+                  <p class="card-text" id="occupiedBalanceCiti"></p>
+                  <p class="card-text" id="freeBalanceCiti"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card text-white mb-3" style="background-color: #EF241C;"> <!-- max-width: 18rem; -->
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <h5 class="card-title">HSBC</h5>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <i class="fa-brands fa-cc-visa fa-2x"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-7">
+                  <p class="card-text">Limite Disponible</p>
+                  <p class="card-text">Salgo dispuesto</p>
+                  <p class="card-text">Saldo disponible</p>
+                </div>
+                <div class="col-5">
+                  <p class="card-text" id="limitHsbc"></p>
+                  <p class="card-text" id="occupiedBalanceHsbc"></p>
+                  <p class="card-text" id="freeBalanceHsbc"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card text-white mb-3" style="background-color: #14549C;"> <!-- max-width: 18rem; -->
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <h5 class="card-title">BBVA</h5>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <i class="fa-brands fa-cc-visa fa-2x"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-7">
+                  <p class="card-text">Limite Disponible</p>
+                  <p class="card-text">Salgo dispuesto</p>
+                  <p class="card-text">Saldo disponible</p>
+                </div>
+                <div class="col-5">
+                  <p class="card-text" id="limitBbva"></p>
+                  <p class="card-text" id="occupiedBalanceBbva"></p>
+                  <p class="card-text" id="freeBalanceBbva"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+
+</html>
